@@ -66,8 +66,6 @@ class PokemonViewController: UIViewController {
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     var id:Int = -1
-    var defaultImage:UIImage! = UIImage(named: "Scooter")!
-    var shinyImage:UIImage! = UIImage(named:"Dark Ocean")!
     
     var pokemon:Pokemon = Pokemon(name: "nil", height: -1, weight: -1,sprites: nil, moves:nil,types: nil, stats:nil)
     
@@ -130,9 +128,6 @@ class PokemonViewController: UIViewController {
         
         guard let url = URL(string: (self.pokemon.sprites?.front_default)!) else {return}
         self.image.downloadedFrom(url: url)
-        
-        self.image.image = defaultImage
-        
         self.image.contentMode = .scaleAspectFit
         
         self.name.text = String(self.id) + " " + (self.pokemon.name?.uppercased())!
