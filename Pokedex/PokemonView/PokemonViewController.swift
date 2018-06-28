@@ -19,7 +19,6 @@ struct Pokemon:Decodable {
     
     struct Sprites:Decodable {
         let front_default:String?
-        let front_shiny:String?
     }
     struct Moves:Decodable {
         let move:Move?
@@ -34,8 +33,6 @@ struct Pokemon:Decodable {
             let name:String?
         }
     }
-    
-    
     struct Stats: Decodable {
         let stat:Stat?
         let base_stat:Int?
@@ -50,38 +47,62 @@ class PokemonViewController: UIViewController {
 
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var name: UILabel!
+    
+    // Pokemon attribute outlets
     @IBOutlet weak var weight: UILabel!
     @IBOutlet weak var height: UILabel!
     @IBOutlet weak var type: UILabel!
-    
+    // Pokemon stats outlets
     @IBOutlet weak var attack: UILabel!
     @IBOutlet weak var specialAttack: UILabel!
     @IBOutlet weak var defense: UILabel!
     @IBOutlet weak var specialDefense: UILabel!
     @IBOutlet weak var hp: UILabel!
-    
+    // Pokemon moves outlet
     @IBOutlet weak var movesTextView: UITextView!
     
+    // Loading view outlets
+    @IBOutlet var loadingView: UIView!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    
     var id:Int = -1
+    var defaultImage:UIImage! = UIImage(named: "Scooter")!
+    var shinyImage:UIImage! = UIImage(named:"Dark Ocean")!
     
     var pokemon:Pokemon = Pokemon(name: "nil", height: -1, weight: -1,sprites: nil, moves:nil,types: nil, stats:nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // add loading screen
-        if id > 1 && id <= 151 {            
-            getPokemonData()
-            //remove loading screen
+        
+        // Add loading screen
+        showLoadingScreen()
+        
+        // Threading. Fetch the data faster.
+        DispatchQueue.global(qos: .userInteractive).async {
+            self.getPokemonData()
+            
         }
+        
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    fileprivate func showLoadingScreen() {
+        // set height and width of the loading screen to the current screen size
+        loadingView.bounds.size.width = view.bounds.width
+        loadingView.bounds.size.height = view.bounds.height
+        
+        // make sure the loading view will be centered in current screen
+        loadingView.center = view.center
+        view.addSubview(loadingView)
+        
+        // start animating loading indicator
+        loadingIndicator.startAnimating()
     }
     
-    func getPokemonData() {
+    fileprivate func hideLoadingScreen() {
+        loadingView.removeFromSuperview()
+        loadingIndicator.stopAnimating()
+    }
+    
+    fileprivate func getPokemonData() {
         let urlString = "https://pokeapi.co/api/v2/pokemon/" + String(self.id)
         guard let url = URL(string: urlString) else {return}
         
@@ -90,30 +111,41 @@ class PokemonViewController: UIViewController {
             do {
                 self.pokemon = try JSONDecoder().decode(Pokemon.self, from: data)
                 
-                print(self.pokemon)
-                
-                DispatchQueue.main.async { // Correct
+                // use the main thread since it is UI
+                // use sync to make sure setPokemonData is finished before removing loading screen
+                DispatchQueue.main.sync {
                     self.setPokemonData()
+                    self.hideLoadingScreen()
                 }
                 
             } catch {
                 print("Json Error")
             }
-            
-            
         }.resume()
     }
     
-    func setPokemonData() {
+    
+    
+    fileprivate func setPokemonData() {
         
         guard let url = URL(string: (self.pokemon.sprites?.front_default)!) else {return}
-        
         self.image.downloadedFrom(url: url)
+        
+        self.image.image = defaultImage
         
         self.image.contentMode = .scaleAspectFit
         
         self.name.text = String(self.id) + " " + (self.pokemon.name?.uppercased())!
         
+        setPokemonAttributes()
+        
+        setPokemonType()
+        
+        setPokemonStats()
+        setPokemonMoves()
+    }
+    
+    fileprivate func setPokemonAttributes() {
         self.height.adjustsFontSizeToFitWidth = true
         self.height.minimumScaleFactor = 0.2
         self.height.text = "HEIGHT: " + String(self.pokemon.height!) + "m"
@@ -121,27 +153,27 @@ class PokemonViewController: UIViewController {
         self.weight.adjustsFontSizeToFitWidth = true
         self.weight.minimumScaleFactor = 0.2
         self.weight.text = "WEIGHT: " + String(self.pokemon.weight!) + "kg"
-        
+    }
+    
+    fileprivate func setPokemonType() {
         var fullType:String = "TYPE: "
-        for type in self.pokemon.types! {
+        
+        // Reversed the array to print slot 1 type before slot 2 type
+        for type in self.pokemon.types!.reversed() {
             if type.slot == 2 {
-                
-                fullType += (type.type?.name)!
                 fullType += "/"
+                fullType += (type.type?.name)!
             }
             else {
                 fullType += (type.type?.name)!
             }
         }
         self.type.adjustsFontSizeToFitWidth = true
-        self.type.minimumScaleFactor = 0.2        
+        self.type.minimumScaleFactor = 0.2
         self.type.text = fullType.uppercased()
-        
-        setPokemonStats()
-        setPokemonMoves()
     }
     
-    func setPokemonStats() {
+    fileprivate func setPokemonStats() {
         for stats in self.pokemon.stats! {
             let stat = String(stats.base_stat!)
             switch stats.stat?.name! {
@@ -161,11 +193,16 @@ class PokemonViewController: UIViewController {
         }
     }
     
-    func setPokemonMoves() {
+    fileprivate func setPokemonMoves() {
+        
+        // fixes indentation from the default text view
+        // removes margins to align the text from the labels
+        self.movesTextView.textContainer.lineFragmentPadding = 0
+        self.movesTextView.textContainerInset = .zero
+        
         for moves in self.pokemon.moves! {
             let name = moves.move?.name!.uppercased()
-            
-             let n = name?.replacingOccurrences(of: "-", with: " ")
+            let n = name?.replacingOccurrences(of: "-", with: " ")
             self.movesTextView.text! += n!
             self.movesTextView.text! += "\n"
         }
@@ -173,17 +210,6 @@ class PokemonViewController: UIViewController {
     }
 
 }
-
-extension String {
-    func capitalizingFirstLetter() -> String {
-        return prefix(1).capitalized + dropFirst()
-    }
-    
-    mutating func capitalizeFirstLetter() {
-        self = self.capitalizingFirstLetter()
-    }
-}
-
 
 extension UIImageView {
     func downloadedFrom(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {

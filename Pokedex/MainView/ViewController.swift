@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var numberField: UITextField!
     @IBOutlet weak var submitButton: UIButton!
@@ -17,13 +17,26 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // 40
+        numberField.delegate = self
+        
+        // Make the button rounded by setting corner radius
         submitButton.layer.cornerRadius = submitButton.bounds.height / 2
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    // Limit the characters in the text field.
+    // Less user error
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let maxLength = 3
+        let currentString: NSString = textField.text! as NSString
+        let newString: NSString =
+            currentString.replacingCharacters(in: range, with: string) as NSString
+        return newString.length <= maxLength
     }
 
     // dismiss keyboard when screen is touched
@@ -33,46 +46,31 @@ class ViewController: UIViewController {
     
     
     @IBAction func textFieldChanged(_ sender: Any) {
-        inputError()
+        _ = inputError()
     }
     
     @IBAction func submitButtonTouched(_ sender: Any) {
-        
-        //check input
-        if numberField.text?.isEmpty ?? true {
-            self.inputErrLabel.isHidden = false
-        }
-        else if Int(numberField.text!)! > 151 {
-            self.inputErrLabel.isHidden = false
-        }
-        else {
+        // check input before performing segue
+        if inputError() {
             performSegue(withIdentifier: "showPokemon", sender: nil)
-            self.inputErrLabel.isHidden = true
         }
     }
     
-    func inputError() {
-        /*
-        let alert = UIAlertController(title: "Empty input", message: "Please enter a number from 1 - 151.", preferredStyle: UIAlertControllerStyle.alert)
+    func inputError() -> Bool{
         
-        // add an action (button)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        
-        // show the alert
-        self.present(alert, animated: true, completion: nil)
-        */
-        
+        // Check if input is empty
         if numberField.text?.isEmpty ?? true {
             self.inputErrLabel.isHidden = false
         }
         else if Int(numberField.text!)! > 151 {
+            // if input is greater than 151
             self.inputErrLabel.isHidden = false
         }
         else {
             self.inputErrLabel.isHidden = true
+            return true
         }
-        
-        
+        return false
         
     }
     
@@ -80,7 +78,7 @@ class ViewController: UIViewController {
         guard let vc = segue.destination as? PokemonViewController else {return}
         vc.id = Int(numberField.text!)!
         
-        // clear the number field before seque
+        // clear the number field before segue
         numberField.text = ""
         // dismiss the keyboard as well.
         self.view.endEditing(true)

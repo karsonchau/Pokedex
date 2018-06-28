@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qfa-7f-0Mf">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mountains" translatesAutoresizingMaskIntoConstraints="NO" id="xBy-pX-3i6">
+                                <rect key="frame" x="0.0" y="88" width="375" height="724"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ir6-ck-SF3">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="llT-5S-KOn">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c9x-Rl-t2l">
+                                <rect key="frame" x="0.0" y="64" width="375" height="714"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokemon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcf-qA-v5z">
+                                        <rect key="frame" x="119" y="30" width="138" height="44"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="32"/>
+                                        <color key="textColor" red="0.16078431369999999" green="0.1843137255" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="This application will find Generation 1 Pokemon. Enter a number from 1 - 151 to find the Pokemon's details." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubB-S0-sMw">
+                                        <rect key="frame" x="16" y="87" width="344" height="86"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="86" id="6Sw-ar-hnH"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.16078431372549021" green="0.18431372549019609" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="1-151" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="201-Dh-UD6">
+                                        <rect key="frame" x="154" y="197" width="66" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <connections>
+                                            <action selector="textFieldChanged:" destination="BYZ-38-t0r" eventType="editingChanged" id="AYd-Rw-Bqh"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ha-ff-cUl">
+                                        <rect key="frame" x="111" y="317" width="154" height="69"/>
+                                        <color key="backgroundColor" red="0.33333333333333331" green="0.80392156862745101" blue="0.76470588235294112" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="69" id="beT-cf-FDd"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="154" id="flN-j9-EIu"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                        <state key="normal" title="SUBMIT">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="submitButtonTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="i6O-V7-ddx"/>
+                                        </connections>
+                                    </button>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter a number from 1 - 151." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YrS-LF-LbF">
+                                        <rect key="frame" x="16" y="254" width="344" height="24"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                        <color key="textColor" red="0.82352941176470584" green="0.10196078431372549" blue="0.10196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="tcf-qA-v5z" firstAttribute="centerX" secondItem="c9x-Rl-t2l" secondAttribute="centerX" id="1qN-Ge-In8"/>
+                                    <constraint firstItem="YrS-LF-LbF" firstAttribute="leading" secondItem="c9x-Rl-t2l" secondAttribute="leading" constant="16" id="855-Cq-UhY"/>
+                                    <constraint firstItem="YrS-LF-LbF" firstAttribute="top" secondItem="201-Dh-UD6" secondAttribute="bottom" constant="27" id="8IC-06-mC0"/>
+                                    <constraint firstItem="201-Dh-UD6" firstAttribute="top" secondItem="ubB-S0-sMw" secondAttribute="bottom" constant="24" id="CcR-iZ-TWQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="YrS-LF-LbF" secondAttribute="trailing" constant="15" id="Huz-Ij-BzR"/>
+                                    <constraint firstItem="2ha-ff-cUl" firstAttribute="top" secondItem="YrS-LF-LbF" secondAttribute="bottom" constant="39" id="ORT-6A-vfh"/>
+                                    <constraint firstItem="ubB-S0-sMw" firstAttribute="leading" secondItem="c9x-Rl-t2l" secondAttribute="leading" constant="16" id="Y3r-s3-M1D"/>
+                                    <constraint firstItem="tcf-qA-v5z" firstAttribute="top" secondItem="c9x-Rl-t2l" secondAttribute="top" constant="30" id="bC3-DA-ilX"/>
+                                    <constraint firstItem="ubB-S0-sMw" firstAttribute="centerX" secondItem="c9x-Rl-t2l" secondAttribute="centerX" id="j9k-aA-aLM"/>
+                                    <constraint firstAttribute="trailing" secondItem="ubB-S0-sMw" secondAttribute="trailing" constant="15" id="mAa-44-rPK"/>
+                                    <constraint firstItem="2ha-ff-cUl" firstAttribute="centerX" secondItem="c9x-Rl-t2l" secondAttribute="centerX" id="ohq-XY-ZJ1"/>
+                                    <constraint firstItem="ubB-S0-sMw" firstAttribute="top" secondItem="tcf-qA-v5z" secondAttribute="bottom" constant="13" id="sOi-j4-VfV"/>
+                                    <constraint firstItem="201-Dh-UD6" firstAttribute="centerX" secondItem="c9x-Rl-t2l" secondAttribute="centerX" id="txS-Fx-ue3"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Ir6-ck-SF3" secondAttribute="bottom" id="EgC-7C-hvt"/>
+                            <constraint firstItem="xBy-pX-3i6" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="FTn-Od-YV8"/>
+                            <constraint firstItem="xBy-pX-3i6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="HNL-Mj-hKU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ir6-ck-SF3" secondAttribute="trailing" id="Hbt-OW-vv6"/>
+                            <constraint firstItem="c9x-Rl-t2l" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="PyG-28-NA9"/>
+                            <constraint firstItem="c9x-Rl-t2l" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="64" id="Q2Z-Dn-YYm"/>
+                            <constraint firstAttribute="bottom" secondItem="xBy-pX-3i6" secondAttribute="bottom" id="Raa-23-1tw"/>
+                            <constraint firstItem="c9x-Rl-t2l" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Rda-nf-Go1"/>
+                            <constraint firstItem="c9x-Rl-t2l" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="TyV-cH-tZ2"/>
+                            <constraint firstItem="Ir6-ck-SF3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gjq-sU-zGS"/>
+                            <constraint firstItem="Ir6-ck-SF3" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="mWM-lv-hQf"/>
+                            <constraint firstItem="xBy-pX-3i6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rNG-Ln-531"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="DuL-Hd-jco">
+                        <barButtonItem key="backBarButtonItem" title=" " id="8W8-yD-7Nm"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="inputErrLabel" destination="YrS-LF-LbF" id="v4f-KY-MoE"/>
+                        <outlet property="numberField" destination="201-Dh-UD6" id="NF3-Xd-20S"/>
+                        <outlet property="submitButton" destination="2ha-ff-cUl" id="kcz-td-Xah"/>
+                        <segue destination="zDb-pV-qIu" kind="show" identifier="showPokemon" id="hWj-p3-Qyd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1077.5999999999999" y="130.88455772113943"/>
+        </scene>
+        <!--Custom Nav Controller-->
+        <scene sceneID="Wuh-uD-tEW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qfa-7f-0Mf" customClass="CustomNavController" customModule="Pokedex" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="U1f-01-Pi0">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="PXZ-Ak-lf5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ORf-QK-weu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="132.26600985221674"/>
+        </scene>
+        <!--PokemonViewController-->
+        <scene sceneID="uEV-TW-mol">
+            <objects>
+                <viewControllerPlaceholder storyboardName="PokemonViewController" id="zDb-pV-qIu" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O1x-fG-Fk5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1852" y="131.52709359605913"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="mountains" width="1980" height="1080"/>
+    </resources>
+</document>

@@ -114,7 +114,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="DuL-Hd-jco"/>
+                    <navigationItem key="navigationItem" id="DuL-Hd-jco">
+                        <barButtonItem key="backBarButtonItem" title=" " id="8W8-yD-7Nm"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="inputErrLabel" destination="YrS-LF-LbF" id="v4f-KY-MoE"/>
                         <outlet property="numberField" destination="201-Dh-UD6" id="NF3-Xd-20S"/>
@@ -223,7 +225,7 @@
                                 <color key="textColor" red="0.16078431369999999" green="0.1843137255" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dlp-aZ-Cyc">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dlp-aZ-Cyc">
                                 <rect key="frame" x="10" y="525.66666666666663" width="349" height="252.33333333333337"/>
                                 <color key="textColor" red="0.16078431369999999" green="0.1843137255" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
@@ -275,6 +277,33 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MII-ty-0kA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="lRO-fQ-HY0">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="818"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Scooter" translatesAutoresizingMaskIntoConstraints="NO" id="094-9D-93m">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="818"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </imageView>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="c1I-gl-XpU">
+                            <rect key="frame" x="177" y="399" width="20" height="20"/>
+                            <color key="color" red="0.16078431369999999" green="0.1843137255" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </activityIndicatorView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Fetching data..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMe-mt-VxV">
+                            <rect key="frame" x="123" y="440" width="128" height="24"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
+                            <color key="textColor" red="0.16078431369999999" green="0.1843137255" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="c1I-gl-XpU" firstAttribute="centerY" secondItem="lRO-fQ-HY0" secondAttribute="centerY" id="CpF-vV-PH4"/>
+                        <constraint firstItem="c1I-gl-XpU" firstAttribute="centerX" secondItem="lRO-fQ-HY0" secondAttribute="centerX" id="Ncc-zT-2nd"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="Fly-RG-TlN"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="1852" y="131.52709359605913"/>
         </scene>
